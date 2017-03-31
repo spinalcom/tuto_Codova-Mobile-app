@@ -1,18 +1,18 @@
 # tuto_Codova-Mobile-app
 
-
 To Start Add an SpinalHub in nerve-center
 
 ## Install mobile app
 in organs folder
 
+```
 cordova create mobile-app
 cd mobile-app
 cordova platform add android
 
 rm -rf www
 cp -r ../mobile-app_www/www .
-
+```
 
 ## Run the android app
 
