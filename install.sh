@@ -13,11 +13,34 @@ expr "$*" : ".*--help" > /dev/null && usage
 
 readonly APPNAME="mobile-app"
 readonly LOG_FILE="/tmp/$(basename "$0").log"
-readonly CUSTOM_IP="YOUR IP"
+readonly CUSTOM_IP="<YOUR IP>"
 readonly SCRIPTPATH="$(cd $(dirname $0); pwd -P)"
 readonly ORGANPATH="$SCRIPTPATH/organs"
 readonly APPPATH="$ORGANPATH/mobile-app"
 readonly WWWPATH="$APPPATH/www"
+
+cleanup() {
+    # Remove temporary files
+    # Restart services
+    # ...
+    echo "Nothing to be done"
+}
+
+setup_mobile() {
+        if [ "$CUSTOM_IP" == "<YOUR IP>" ];
+        then
+                echo "Please edit the script and replace <YOUR IP>."
+                exit 1
+        fi
+        cd "$ORGANPATH" || exit
+        echo yes
+        exit
+        cordova create $APPNAME
+        cd "$APPPATH" || exit
+        cordova platform add android
+        rm -rf "$WWWPATH"
+        cp -r ../mobile-app_www/www . # $1 ??
+}
 
 __ScriptVersion="1.0"
 
@@ -31,7 +54,8 @@ function usage ()
 
     Options:
     -h|help       Display this message
-    -v|version    Display script version"
+    -v|version    Display script version
+    -i|install    Deploys the mobile app"
 
 }    # ----------  end of function usage  ----------
 
@@ -39,41 +63,29 @@ function usage ()
 #  Handle command line arguments
 #-----------------------------------------------------------------------
 
-while getopts ":hv" opt
-do
-  case $opt in
+main() {
+        while getopts ":hvi" opt
+        do
+          case $opt in
 
-        h|help     )  usage; exit 0   ;;
+                h|help     )  usage; exit 0   ;;
 
-        v|version  )  echo "$0 -- Version $__ScriptVersion"; exit 0   ;;
+                v|version  )  echo "$0 -- Version $__ScriptVersion"; exit 0   ;;
 
-        * )  echo -e "\n  Option does not exist : $OPTARG\n"
-                  usage; exit 1   ;;
+                i|install  ) setup_mobile; exit 0    ;;
 
-  esac    # --- end of case ---
-done
-shift $(($OPTIND-1))
+                * )  echo -e "\n  Option does not exist : $OPTARG\n"
+                          usage; exit 1   ;;
 
-cleanup() {
-    # Remove temporary files
-    # Restart services
-    # ...
-    echo "Nothing to be done"
+          esac    # --- end of case ---
+        done
+        shift $(($OPTIND-1))
 }
-
-setup_mobile() {
-        cd "$ORGANPATH" || exit
-        cordova create $APPNAME
-        cd "$APPPATH" || exit
-        cordova platform add android
-        rm -rf "$WWWPATH"
-        cp -r ../mobile-app_www/www . # $1 ??
-}
-
 
 if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
     trap cleanup EXIT
     # Script goes here
     # ...
+    main "$*"
 fi
 
