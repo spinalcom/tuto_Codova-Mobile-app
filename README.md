@@ -3,6 +3,30 @@
 To Start Add an SpinalHub in nerve-center
 
 ## Install mobile app
+
+
+### by script
+
+Edit the line to set your ip
+
+```
+readonly CUSTOM_IP="<YOUR IP>"
+```
+
+
+Usage :  ./install.sh [options] [--]
+
+```
+    Options:
+    -h|help       Display this message
+    -v|version    Display script version
+    -i|install    Deploys the mobile app
+    -d|deps       Installs dependencies  (not yet)
+```
+
+### by cmd line
+
+
 in organs folder
 
 ```
