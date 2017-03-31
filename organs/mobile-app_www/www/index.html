@@ -1,0 +1,33 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>SpinalCom mobile application</title>
+        <!-- some simple css for the button -->
+        <style>
+        .btn {          background: #3498db;
+          background-image: -webkit-linear-gradient(top, #3498db, #2980b9);          background-image: -moz-linear-gradient(top, #3498db, #2980b9);          background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+          background-image: -o-linear-gradient(top, #3498db, #2980b9);          background-image: linear-gradient(to bottom, #3498db, #2980b9);          -webkit-border-radius: 28;
+          -moz-border-radius: 28;          border-radius: 28px;          color: #ffffff;          font-size: 31px;          padding: 10px 20px 10px 20px;          text-decoration: none;        }
+        </style>
+    </head>
+    <body>
+        <div class="app">
+            <h1>SpinalCom mobile application</h1>
+            <button class="btn" onclick="app.onClick()">Tap me !</button>
+        </div>
+
+        <!-- add the spinalcore.browser library -->
+        <script type="text/javascript" src="js/spinalcore.browser.js"></script>
+        <!-- add the definition of the models -->
+        <script type="text/javascript" src="js/models.js"></script>
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
