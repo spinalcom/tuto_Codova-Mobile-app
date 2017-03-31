@@ -19,6 +19,14 @@ readonly ORGANPATH="$SCRIPTPATH/organs"
 readonly APPPATH="$ORGANPATH/mobile-app"
 readonly WWWPATH="$APPPATH/www"
 
+echo $LOG_FILE
+echo $CUSTOM_IP
+echo $SCRIPTPATH
+echo $ORGANPATH
+echo $APPPATH
+
+
+
 cleanup() {
     # Remove temporary files
     # Restart services
@@ -33,13 +41,12 @@ setup_mobile() {
                 exit 1
         fi
         cd "$ORGANPATH" || exit
-        echo yes
-        exit
         cordova create $APPNAME
         cd "$APPPATH" || exit
         cordova platform add android
         rm -rf "$WWWPATH"
         cp -r ../mobile-app_www/www . # $1 ??
+	sed -i "s/XX.XX.XX.XX/$CUSTOM_IP/g"  "$WWWPATH/js/index.js"
 }
 
 deps() {

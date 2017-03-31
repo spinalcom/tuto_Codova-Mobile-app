@@ -27,7 +27,7 @@
         // Connect to the Hub
         // Using Read/Write User ID: 644 | Password: 4YCSeYUzsDG8XSrjqXgkDPrdmJ3fQqHs
         // here the ip of the computer hosting the hub is 10.10.10.106, know your own ip address with 'ifconfig'
-        var conn = spinalCore.connect("http://644:4YCSeYUzsDG8XSrjqXgkDPrdmJ3fQqHs@10.10.10.121:8888/__mobile_app__");
+        var conn = spinalCore.connect("http://644:4YCSeYUzsDG8XSrjqXgkDPrdmJ3fQqHs@XX.XX.XX.XX:8888/__mobile_app__");
         var _app = this; // workaround to save the variable in the callback
         // load the model
         spinalCore.load(conn, "myButton", function (myButton) {
