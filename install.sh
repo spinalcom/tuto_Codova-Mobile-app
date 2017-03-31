@@ -14,7 +14,7 @@ expr "$*" : ".*--help" > /dev/null && usage
 readonly APPNAME="mobile-app"
 readonly LOG_FILE="/tmp/$(basename "$0").log"
 readonly CUSTOM_IP="<YOUR IP>"
-readonly SCRIPTPATH="$(cd $(dirname $0); pwd -P)"
+readonly SCRIPTPATH="$(cd "$(dirname "$0")"; pwd -P)"
 readonly ORGANPATH="$SCRIPTPATH/organs"
 readonly APPPATH="$ORGANPATH/mobile-app"
 readonly WWWPATH="$APPPATH/www"
@@ -42,6 +42,11 @@ setup_mobile() {
         cp -r ../mobile-app_www/www . # $1 ??
 }
 
+deps() {
+        echo "TBD."
+        exit 3
+}
+
 __ScriptVersion="1.0"
 
 #===  FUNCTION  ================================================================
@@ -55,7 +60,8 @@ function usage ()
     Options:
     -h|help       Display this message
     -v|version    Display script version
-    -i|install    Deploys the mobile app"
+    -i|install    Deploys the mobile app
+    -d|deps       Installs dependencies " #TODO
 
 }    # ----------  end of function usage  ----------
 
@@ -74,18 +80,17 @@ main() {
 
                 i|install  ) setup_mobile; exit 0    ;;
 
+                d|deps     ) deps; exit 0 ;;
                 * )  echo -e "\n  Option does not exist : $OPTARG\n"
                           usage; exit 1   ;;
 
           esac    # --- end of case ---
         done
-        shift $(($OPTIND-1))
+        shift $((OPTIND-1))
 }
 
 if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
     trap cleanup EXIT
-    # Script goes here
-    # ...
     main "$*"
 fi
 
