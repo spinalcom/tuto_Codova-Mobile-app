@@ -19,14 +19,6 @@ readonly ORGANPATH="$SCRIPTPATH/organs"
 readonly APPPATH="$ORGANPATH/mobile-app"
 readonly WWWPATH="$APPPATH/www"
 
-echo $LOG_FILE
-echo $CUSTOM_IP
-echo $SCRIPTPATH
-echo $ORGANPATH
-echo $APPPATH
-
-
-
 cleanup() {
     # Remove temporary files
     # Restart services
