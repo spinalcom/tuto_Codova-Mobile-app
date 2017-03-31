@@ -14,7 +14,7 @@ rm -rf www
 cp -r ../mobile-app_www/www .
 ```
 
-Don't forget to change the IP adress in the file tuto_Codova-Mobile-app/organs/mobile-app_www/www/js/index.js and/or tuto_Codova-Mobile-app/organs/mobile-app/www/js/index.html
+Don't forget to change the IP adress in the file tuto_Codova-Mobile-app/organs/mobile-app_www/www/js/index.js and/or tuto_Codova-Mobile-app/organs/mobile-app/www/js/index.js
 
 
 
